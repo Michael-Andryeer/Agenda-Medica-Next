@@ -1,6 +1,7 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import SignUpForm from "./components/sign-up-form";
 import { TabsContent } from "@radix-ui/react-tabs";
+import LoginForm from "./components/login-form";
 
 const AuthenticationPage = () => {
   return (
@@ -10,7 +11,9 @@ const AuthenticationPage = () => {
           <TabsTrigger value="login">Login</TabsTrigger>
           <TabsTrigger value="register">Criar conta</TabsTrigger>
         </TabsList>
-        <TabsContent value="login">...</TabsContent>
+        <TabsContent value="login">
+          <LoginForm />
+        </TabsContent>
         <TabsContent value="register">
           <SignUpForm />
         </TabsContent>
