@@ -21,6 +21,10 @@ import { Button } from "@/components/ui/button";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 
 const loginSchema = z.object({
   email: z.string().trim().email({ message: "Email inválido" }),
@@ -31,6 +35,7 @@ const loginSchema = z.object({
 });
 
 const LoginForm = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof loginSchema>>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -39,8 +44,21 @@ const LoginForm = () => {
     },
   });
 
-  function onSubmit(data: z.infer<typeof loginSchema>) {
-    console.log(data);
+  async function onSubmit(values: z.infer<typeof loginSchema>) {
+    await authClient.signIn.email(
+      {
+        email: values.email,
+        password: values.password,
+      },
+      {
+        onSuccess: () => {
+          router.push("/dashboard");
+        },
+        onError: () => {
+          toast.error("Email ou senha inválidos");
+        },
+      }
+    );
   }
 
   return (
@@ -82,8 +100,16 @@ const LoginForm = () => {
             />
           </CardContent>
           <CardFooter>
-            <Button className="w-full" type="submit">
-              Acessar
+            <Button
+              className="w-full"
+              type="submit"
+              disabled={form.formState.isSubmitting}
+            >
+              {form.formState.isSubmitting ? (
+                <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+              ) : (
+                "Acessar"
+              )}
             </Button>
           </CardFooter>
         </form>
