@@ -61,7 +61,6 @@ const ClinicForm = () => {
               </FormItem>
             )}
           />
-
           <DialogFooter>
             <Button type="submit" disabled={form.formState.isSubmitting}>
               {form.formState.isSubmitting && (
