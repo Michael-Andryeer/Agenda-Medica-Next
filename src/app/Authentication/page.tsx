@@ -1,7 +1,7 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import SignUpForm from "./components/sign-up-form";
+import SignUpForm from "./_components/sign-up-form";
 import { TabsContent } from "@radix-ui/react-tabs";
-import LoginForm from "./components/login-form";
+import LoginForm from "./_components/login-form";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
