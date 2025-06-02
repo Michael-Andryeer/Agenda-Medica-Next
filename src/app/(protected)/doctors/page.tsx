@@ -23,7 +23,7 @@ const DoctorsPage = async () => {
     headers: await headers(),
   });
   if (!session?.user) {
-    redirect("/authentication");
+    redirect("/Authentication");
   }
   if (!session.user.clinic) {
     redirect("/clinic-form");
