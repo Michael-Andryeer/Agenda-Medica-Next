@@ -53,7 +53,7 @@ const AppointmentsPage = async () => {
       <PageContent>
         {/* TODO: Implementar listagem de agendamentos */}
         <div className="text-muted-foreground py-8 text-center">
-          Listagem de agendamentos será implementada em breve
+          Listagem de agendamentos sera implementada quando eu tiver vontade!
         </div>
       </PageContent>
     </PageContainer>
